@@ -6,6 +6,7 @@ api: 3.0.0
 commands:
   vanish:
     description: "Vanish your self"
+    aliases: [Vanish]
 permissions:
   vanish.use:
     description: "Vanish use perm"
