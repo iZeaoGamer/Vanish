@@ -1,0 +1,12 @@
+name: Vanish
+main: erkam2002\Vanish
+version: 1.0
+author: erkam2002
+api: 3.0.0
+commands:
+  vanish:
+    description: "Vanish your self"
+permissions:
+  vanish.use:
+    description: "Vanish use perm"
+    default: op
