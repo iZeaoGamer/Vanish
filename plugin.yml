@@ -1,7 +1,7 @@
 name: Vanish
 main: erkam2002\Vanish
 version: 2.0.0
-author: erkam2002
+author: erkam2002, Zeao
 api: 3.0.0-ALPHA6
 commands:
   vanish:
