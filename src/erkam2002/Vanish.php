@@ -31,7 +31,7 @@ class Vanish extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args) : bool{
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         $name = $sender->getName();
         if($cmd->getName() == "vanish") {
             if ($sender->hasPermission("vanish.use")) {
