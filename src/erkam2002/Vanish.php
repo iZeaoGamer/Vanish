@@ -31,7 +31,7 @@ class Vanish extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
+    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args) : bool{
         $name = $sender->getName();
         if($cmd->getName() == "vanish") {
             if ($sender->hasPermission("vanish.use")) {
@@ -43,6 +43,7 @@ class Vanish extends PluginBase implements Listener {
                         $sender->setGamemode(1);
                     }
                     $sender->sendMessage($this->prefix . C::GREEN . "You are now vanished.");
+                    return true;
                 } elseif (in_array($name, $this->vanish)) {
                     unset($this->vanish[array_search($name, $this->vanish)]);
                     $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
@@ -53,6 +54,7 @@ class Vanish extends PluginBase implements Listener {
                     $sender->setHealth(20);
                     $sender->setFood(20);
                     $sender->sendMessage($this->prefix . C::RED . "You are no longer vanished!");
+                    return true;
                 }
             }
         }
