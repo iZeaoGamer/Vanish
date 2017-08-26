@@ -1,8 +1,8 @@
 name: Vanish
 main: erkam2002\Vanish
-version: 1.0
+version: 2.0
 author: erkam2002
-api: 3.0.0
+api: 3.0.0-ALPHA7
 commands:
   vanish:
     description: "Vanish your self"
