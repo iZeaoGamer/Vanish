@@ -31,18 +31,18 @@ class Vanish extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
+    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args) {
         $name = $sender->getName();
-        if($cmd->getName() == "vanish") {
+        if($cmd->getName() == "supervanish") {
             if ($sender->hasPermission("vanish.use")) {
                 if (!in_array($name, $this->vanish)) {
                     $this->vanish[] = $name;
                     $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
                     $sender->setNameTagVisible(false);
                     if($this->config->get("Creative_Vanish") == true){
-                        $sender->setGamemode(1);
+                        $sender->setGamemode(0);
                     }
-                    $sender->sendMessage($this->prefix . C::GREEN . "You are now vanished.");
+                    $sender->sendMessage($this->prefix . C::GREEN . "You are now supervanished.");
                     return true;
                 } elseif (in_array($name, $this->vanish)) {
                     unset($this->vanish[array_search($name, $this->vanish)]);
@@ -53,7 +53,7 @@ class Vanish extends PluginBase implements Listener {
                     }
                     $sender->setHealth(20);
                     $sender->setFood(20);
-                    $sender->sendMessage($this->prefix . C::RED . "You are no longer vanished!");
+                    $sender->sendMessage($this->prefix . C::RED . "§aYou are no longer supervanished!");
                     return true;
                 }
             }
