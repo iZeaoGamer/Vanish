@@ -43,7 +43,6 @@ class Vanish extends PluginBase implements Listener {
                         $sender->setGamemode(2);
                     }
                     $sender->sendMessage($this->prefix . C::GREEN . "§bYou are now supervanished.");
-                    $this->player->sendPopup("§aYou are in vanish mode!");
                     return true;
                 } elseif (in_array($name, $this->vanish)) {
                     unset($this->vanish[array_search($name, $this->vanish)]);
@@ -55,7 +54,6 @@ class Vanish extends PluginBase implements Listener {
                     $sender->setHealth(20);
                     $sender->setFood(20);
                     $sender->sendMessage($this->prefix . C::RED . "§3You are no longer supervanished!");
-                    $this->player->sendPopup("");
                     return true;
                 }
             }
