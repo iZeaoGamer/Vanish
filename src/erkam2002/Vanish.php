@@ -14,7 +14,7 @@ use pocketmine\command\CommandSender;
 
 class Vanish extends PluginBase implements Listener {
 
-    public $prefix = C::BLUE."Vanish".C::DARK_GRAY." >".C::WHITE." ";
+    public $prefix = C::BLUE."[§aSuper§2Vanish§b]§r".C::DARK_GRAY." >".C::WHITE." ";
 
     public $config;
 
@@ -25,35 +25,36 @@ class Vanish extends PluginBase implements Listener {
         $this->saveResource("config.yml");
         @mkdir($this->getDataFolder());
         $this->config = new Config($this->getDataFolder()."config.yml", Config::YAML, [
-            "Creative_Vanish" => true
+            "Adventure_Vanish" => true
         ]);
-        $this->config->set("Creative_Vanish", true);
+        $this->config->set("Adventure_Vanish", true);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
     public function onCommand(CommandSender $sender, Command $cmd, $label, array $args) {
         $name = $sender->getName();
         if($cmd->getName() == "supervanish") {
-            if ($sender->hasPermission("vanish.use")) {
+            if ($sender->hasPermission("supervanish.spectate")) {
                 if (!in_array($name, $this->vanish)) {
                     $this->vanish[] = $name;
                     $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
                     $sender->setNameTagVisible(false);
-                    if($this->config->get("Creative_Vanish") == true){
-                        $sender->setGamemode(0);
+                    if($this->config->get("Adventure_Vanish") == true){
+                        $sender->setGamemode(2);
                     }
-                    $sender->sendMessage($this->prefix . C::GREEN . "You are now supervanished.");
+                    $sender->sendMessage($this->prefix . C::GREEN . "§bYou are now supervanished.");
+                    $this->sendPopup(§aYou are in supervanish mode!)
                     return true;
                 } elseif (in_array($name, $this->vanish)) {
                     unset($this->vanish[array_search($name, $this->vanish)]);
                     $sender->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
                     $sender->setNameTagVisible(true);
-                    if($this->config->get("Creative_Vanish") == true){
+                    if($this->config->get("Adventure_Vanish") == true){
                         $sender->setGamemode(0);
                     }
                     $sender->setHealth(20);
                     $sender->setFood(20);
-                    $sender->sendMessage($this->prefix . C::RED . "§aYou are no longer supervanished!");
+                    $sender->sendMessage($this->prefix . C::RED . "§3You are no longer supervanished!");
                     return true;
                 }
             }
