@@ -43,7 +43,7 @@ class Vanish extends PluginBase implements Listener {
                         $sender->setGamemode(2);
                     }
                     $sender->sendMessage($this->prefix . C::GREEN . "§bYou are now supervanished.");
-                    $this->sendPopup(§aYou are in supervanish mode!)
+                    $this->player->sendPopup("§aYou are in vanish mode!");
                     return true;
                 } elseif (in_array($name, $this->vanish)) {
                     unset($this->vanish[array_search($name, $this->vanish)]);
