@@ -55,6 +55,7 @@ class Vanish extends PluginBase implements Listener {
                     $sender->setHealth(20);
                     $sender->setFood(20);
                     $sender->sendMessage($this->prefix . C::RED . "§3You are no longer supervanished!");
+                    $this->player->sendPopup("");
                     return true;
                 }
             }
