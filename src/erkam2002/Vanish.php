@@ -41,7 +41,8 @@ class Vanish extends PluginBase implements Listener {
                     $sender->setNameTagVisible(false);
                     if($this->config->get("Adventure_Vanish") == true){
                         $sender->setGamemode(2);
-                        $sender->setPopup("§aYou're in §bSuperVanish. §bNo one can see you.");
+                        $sender->sendPopup("§aYou're in §bSuperVanish. §bNo one can see you.", true);
+                        $sender->setTimer(50000);
                     }
                     $sender->sendMessage($this->prefix . C::GREEN . "§bYou are now supervanished. §3No one can see you.");
                     return true;
@@ -51,7 +52,7 @@ class Vanish extends PluginBase implements Listener {
                     $sender->setNameTagVisible(true);
                     if($this->config->get("Adventure_Vanish") == true){
                         $sender->setGamemode(0);
-                        $sender->setPopup(false);
+                        $sender->sendPopup(false);
                     }
                     $sender->setHealth(20);
                     $sender->setFood(20);
