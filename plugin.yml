@@ -1,13 +1,12 @@
 name: Vanish
 main: ErkamKahriman\Vanish
-version: 1.1
+version: 1.2
 author: ErkamKahriman
 api: 3.0.1
 commands:
   vanish:
-    description: "Vanish your self"
-    aliases: [Vanish]
+    description: "Vanish yourself"
 permissions:
   vanish.use:
-    description: "Vanish use perm"
+    description: "Vanish use permission"
     default: op

@@ -13,7 +13,7 @@ use pocketmine\command\CommandSender;
 
 class Vanish extends PluginBase implements Listener {
 
-    const PREFIX = C::BLUE."Vanish".C::DARK_GRAY." >".C::WHITE." ";
+    const PREFIX = C::BLUE."Vanish".C::GRAY." -> ".C::RESET;
 
     public $vanish = array();
 
@@ -29,7 +29,7 @@ class Vanish extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args){
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         $name = $sender->getName();
         $config = new Config($this->getDataFolder()."config.yml", Config::YAML);
         if($cmd->getName() == "vanish") {
@@ -55,6 +55,7 @@ class Vanish extends PluginBase implements Listener {
                 }
             }
         }
+        return false;
     }
 
     public function onDisable(){
