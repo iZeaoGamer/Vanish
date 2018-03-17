@@ -1,6 +1,6 @@
 name: Vanish
-main: ErkamKahriman\Vanish
-version: 1.2
+main: ErkamKahriman\Vanish\Vanish
+version: 2.0
 author: ErkamKahriman
 api: 3.0.1
 commands:
