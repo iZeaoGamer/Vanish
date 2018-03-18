@@ -2,7 +2,7 @@
 
 namespace ErkamKahriman\Vanish;
 
-use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -46,7 +46,7 @@ class Vanish extends PluginBase implements Listener {
         return false;
     }
 
-    public function onJoin(PlayerJoinEvent $event) {
+    public function onLogin(PlayerLoginEvent $event) {
         $player = $event->getPlayer();
         $name = $player->getName();
         if (!isset($this->vanish[$name])) $this->vanish[$name] = false;
