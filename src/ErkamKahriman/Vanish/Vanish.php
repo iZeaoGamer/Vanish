@@ -25,22 +25,22 @@ class Vanish extends PluginBase implements Listener {
 
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
         $name = $sender->getName();
-        if ($cmd->getName() == "vanish") {
+        if ($cmd->getName() == "sv") {
             if ($sender instanceof Player) {
-                if ($sender->hasPermission("vanish.use")) {
+                if ($sender->hasPermission("supervanish.spectate")) {
                     if ($this->vanish[$name] == false) {
                         $this->vanish[$name] = true;
-                        $sender->sendMessage(self::PREFIX . C::GREEN . "You are now vanished.");
+                        $sender->sendMessage(self::PREFIX . C::GREEN . "§dYou are now super vanished!\n§5No one can see you!");
                     } else {
                         $this->vanish[$name] = false;
                         foreach ($this->getServer()->getOnlinePlayers() as $players){
                             $players->showPlayer($sender);
                         }
-                        $sender->sendMessage(self::PREFIX . C::RED . "You are no longer vanished!");
+                        $sender->sendMessage(self::PREFIX . C::RED . "§6You are no longer vanished!\n§eEveryone can see you!");
                     }
                 }
             } else {
-                $sender->sendMessage(self::PREFIX . C::YELLOW . "You need to be a Player.");
+                $sender->sendMessage(self::PREFIX . C::YELLOW . "§aYou need to be a Player.");
             }
         }
         return false;
