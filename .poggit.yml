@@ -1,6 +1,6 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/ggomezz/Vanish
 branches:
-- patch-3
+- patch-4
 projects:
   Super-Vanish:
     path: ""
