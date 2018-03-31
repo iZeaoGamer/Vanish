@@ -25,7 +25,7 @@ class Vanish extends PluginBase implements Listener {
 
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
         $name = $sender->getName();
-        if ($cmd->getName() == "sv") {
+        if ($cmd->getName() == "supervanish") {
             if ($sender instanceof Player) {
                 if ($sender->hasPermission("supervanish.spectate")) {
                     if ($this->vanish[$name] == false) {
