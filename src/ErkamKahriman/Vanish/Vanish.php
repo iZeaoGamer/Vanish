@@ -39,17 +39,15 @@ class Vanish extends PluginBase implements Listener {
         return false;
     }
     public function onLogin(PlayerLoginEvent $event) {
-		$player = $event->getPlayer();
-		$name = $player->getName();
-        $name->sendMessage(self::PREFIX  . C::YELLOW .
-        "TheDoctorPlayz has saved your butt dont worry.");
-        }
+        $player = $event->getPlayer();
+        $name = $player->getName();
+        if (!isset($this->vanish[$name])) $this->vanish[$name] = false;
+    }
     public function onQuit(PlayerQuitEvent $event) {
-		$player = $event->getPlayer();
-		$name = $player->getName();
-        $name->sendMessage(self::PREFIX  . C::YELLOW .
-        "You are still in vanish dont worry.");
-   }
+        $player = $event->getPlayer();
+        $name = $player->getName();
+        if ($this->vanish[$name] == true) $this->vanish[$name] = false;
+    }
     public function onDisable() {
         $this->getLogger()->info(C::RED . "Plugin disabled.");
     }
