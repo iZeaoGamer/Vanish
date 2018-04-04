@@ -1,7 +1,5 @@
 <?php
-
 namespace ErkamKahriman\Vanish;
-
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
@@ -10,19 +8,14 @@ use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-
 class Vanish extends PluginBase implements Listener {
-
     const PREFIX = C::BLUE . "§7[" . C::GRAY . "§aSuper§6Vanish§7]" . C::RESET;
-
     public $vanish = array();
-
     public function onEnable() {
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new VanishTask($this), 20);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getLogger()->info(C::GREEN . "Plugin enabled.");
     }
-
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
         $name = $sender->getName();
         if ($cmd->getName() == "supervanish") {
@@ -45,21 +38,18 @@ class Vanish extends PluginBase implements Listener {
         }
         return false;
     }
-
-    public function onLogin(PlayerLoginEvent ) {
-		$player = event->getPlayer();
+    public function onLogin(PlayerLoginEvent $event) {
+		$player = $event->getPlayer();
 		$name = $player->getName();
         $sender->sendMessage(self::PREFIX  . C::YELLOW .
         "TheDoctorPlayz has saved your butt dont worry.");
         }
-
-    public function onQuit(PlayerQuitEvent ) {
-		$player = event->getPlayer();
+    public function onQuit(PlayerQuitEvent $event) {
+		$player = $event->getPlayer();
 		$name = $player->getName();
         $sender->sendMessage(self::PREFIX  . C::YELLOW .
         "You are still in vanish dont worry.");
    }
-
     public function onDisable() {
         $this->getLogger()->info(C::RED . "Plugin disabled.");
     }
