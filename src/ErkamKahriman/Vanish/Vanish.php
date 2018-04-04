@@ -41,7 +41,7 @@ class Vanish extends PluginBase implements Listener {
     public function onLogin(PlayerLoginEvent $event) {
         $player = $event->getPlayer();
         $name = $player->getName();
-        if (!isset($this->vanish[$name])) $this->vanish[$name] = true;
+        if (!isset($this->vanish[$name])) $this->vanish[$name] = false;
     }
     public function onQuit(PlayerQuitEvent $event) {
         $player = $event->getPlayer();
