@@ -15,7 +15,7 @@ class VanishTask extends PluginTask {
 
     public function onRun(int $currentTick) {
         foreach ($this->plugin->getServer()->getOnlinePlayers() as $player){
-            if ($this->plugin->vanish[$player->getName()] == true){
+            if ($this->plugin->vanish[$name] == true){
                 foreach ($this->plugin->getServer()->getOnlinePlayers() as $players){
                     $players->hidePlayer($player);
                 }
