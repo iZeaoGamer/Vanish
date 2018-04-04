@@ -25,14 +25,14 @@ class Vanish extends PluginBase implements Listener {
                     if ($this->vanish[$name] == false) {
                         $this->vanish[$name] = true;
                         $sender->sendMessage(self::PREFIX . C::GREEN . " §dYou are now vanished. §5No one can see you.");
-                        $this->getServer()->broadcastMessage(C::GREEN . " §c$name §ehas left the game.");
+                        $this->getServer()->broadcastMessage(C::GREEN . "§c$name §ehas left the game.");
                     } else {
                         $this->vanish[$name] = false;
                         foreach ($this->getServer()->getOnlinePlayers() as $players){
                             $players->showPlayer($sender);
                         }
                         $sender->sendMessage(self::PREFIX . C::RED . " §dYou are no longer vanished! §bEveryone can now see you!");
-                        $this->getServer()->broadcastMessage(C::RED . " §a$name §ehas joined the game");
+                        $this->getServer()->broadcastMessage(C::RED . "§a$name §ehas joined the game");
                     }
                 }
             } else {
