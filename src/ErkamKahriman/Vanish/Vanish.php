@@ -41,13 +41,13 @@ class Vanish extends PluginBase implements Listener {
     public function onLogin(PlayerLoginEvent $event) {
 		$player = $event->getPlayer();
 		$name = $player->getName();
-        $sender->sendMessage(self::PREFIX  . C::YELLOW .
+        $player->sendMessage(self::PREFIX  . C::YELLOW .
         "TheDoctorPlayz has saved your butt dont worry.");
         }
     public function onQuit(PlayerQuitEvent $event) {
 		$player = $event->getPlayer();
 		$name = $player->getName();
-        $sender->sendMessage(self::PREFIX  . C::YELLOW .
+        $player->sendMessage(self::PREFIX  . C::YELLOW .
         "You are still in vanish dont worry.");
    }
     public function onDisable() {
