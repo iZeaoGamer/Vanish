@@ -20,23 +20,23 @@ class Vanish extends PluginBase implements Listener {
     public function onEnable() {
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new VanishTask($this), 20);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getLogger()->info(C::GREEN . "Aktiviert.");
+        $this->getLogger()->info(C::GREEN . "Plugin enabled.");
     }
 
     public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
         $name = $sender->getName();
-        if ($cmd->getName() == "vanish") {
+        if ($cmd->getName() == "supervanish") {
             if ($sender instanceof Player) {
-                if ($sender->hasPermission("vanish.use")) {
+                if ($sender->hasPermission("supervanish.spectate")) {
                     if ($this->vanish[$name] == false) {
                         $this->vanish[$name] = true;
-                        $sender->sendMessage(self::PREFIX . C::GREEN . "You are now vanished.");
+                        $sender->sendMessage(self::PREFIX . C::GREEN . "§dYou are now vanished. §5No one can see you.");
                     } else {
                         $this->vanish[$name] = false;
                         foreach ($this->getServer()->getOnlinePlayers() as $players){
                             $players->showPlayer($sender);
                         }
-                        $sender->sendMessage(self::PREFIX . C::RED . "You are no longer vanished!");
+                        $sender->sendMessage(self::PREFIX . C::RED . "§dYou are no longer vanished! §bEveryone can now see you!");
                     }
                 }
             } else {
@@ -59,6 +59,6 @@ class Vanish extends PluginBase implements Listener {
     }
 
     public function onDisable() {
-        $this->getLogger()->info(C::RED . "Deaktiviert.");
+        $this->getLogger()->info(C::RED . "Plugin disabled.");
     }
 }
