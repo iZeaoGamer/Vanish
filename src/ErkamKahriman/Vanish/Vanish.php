@@ -13,7 +13,7 @@ use pocketmine\command\CommandSender;
 
 class Vanish extends PluginBase implements Listener {
 
-    const PREFIX = C::BLUE . "Vanish" . C::GRAY . " -> " . C::RESET;
+    const PREFIX = C::BLUE . "§7[" . C::GRAY . "§aSuper§6Vanish§7]" . C::RESET;
 
     public $vanish = array();
 
