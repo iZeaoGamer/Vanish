@@ -52,6 +52,11 @@ class Vanish extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $name = $player->getName();
         if ($this->vanish[$name] == true) $this->vanish[$name] = true;
+    }
+    public function onJoin(PlayerJoinEvent $event) {
+        $player = $event->getPlayer();
+        $name = $player->getName();
+        if ($this->vanish[$name] == true) $this->vanish[$name] = true;
         $player->sendMessage("§dYou're still in vanish mode! Just a little reminder. :P");
     }
     public function onDisable() {
