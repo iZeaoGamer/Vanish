@@ -24,7 +24,7 @@ class Vanish extends PluginBase implements Listener {
                         $this->vanish[$name] = true;
                         $sender->sendMessage(self::PREFIX . C::GREEN . " §dYou are now vanished. §5No one can see you.");
                         $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
-                        $sender->getPlayer()->addTitle("§6§lVanish Mode", "is §5§lenabled!", 40, 100, 40);
+                        $sender->getPlayer()->addTitle("§6§lVanish Mode", "§5§lis enabled!", 40, 100, 40);
                         $this->getServer()->broadcastMessage(C::GREEN . "§c$name §ehas left the game.");
                     } else {
                         $this->vanish[$name] = false;
@@ -33,12 +33,12 @@ class Vanish extends PluginBase implements Listener {
                         }
                         $sender->sendMessage(self::PREFIX . C::RED . " §dYou are no longer vanished! §bEveryone can now see you!");
                         $sender->removeEffect(Effect::NIGHT_VISION);
-                        $sender->getPlayer()->addTitle("§6§lVanish mode", "is §c§lDisabled", 40, 100, 40);
+                        $sender->getPlayer()->addTitle("§6§lVanish mode", "§c§lis Disabled", 40, 100, 40);
                         $this->getServer()->broadcastMessage(C::RED . "§a$name §ehas joined the game");
                     }
                 }
             } else {
-                $sender->sendMessage(self::PREFIX . C::YELLOW . "Please use this command in-game.");
+                $sender->sendMessage(self::PREFIX . C::YELLOW . " Please use this command in-game.");
             }
         }
         return false;
@@ -47,6 +47,7 @@ class Vanish extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $name = $player->getName();
         if (!isset($this->vanish[$name])) $this->vanish[$name] = false;
+        $sender->sendMessage("§dYour vanish mode is still enabled.");
     }
     public function onQuit(PlayerQuitEvent $event) {
         $player = $event->getPlayer();
