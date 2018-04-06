@@ -1,16 +1,12 @@
 <?php
 namespace ErkamKahriman\Vanish;
-use pocketmine\event\player\PlayerLoginEvent;
-use pocketmine\event\player\PlayerQuitEvent;
-use pocketmine\Player;
+use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent};
 use pocketmine\plugin\PluginBase;
-use pocketmine\entity\Effect;
-use pocketmine\entity\EffectInstance;
-use pocketmine\Server;
+use pocketmine\entity\{Effect, EffectInstance};
+use pocketmine\{Player, Server};
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as C;
-use pocketmine\command\Command;
-use pocketmine\command\CommandSender;
+use pocketmine\command\{Command, CommandSender};
 class Vanish extends PluginBase implements Listener {
     const PREFIX = C::BLUE . "§7[" . C::GRAY . "§aSuper§6Vanish§7]" . C::RESET;
     public $vanish = array();
@@ -28,6 +24,7 @@ class Vanish extends PluginBase implements Listener {
                         $this->vanish[$name] = true;
                         $sender->sendMessage(self::PREFIX . C::GREEN . " §dYou are now vanished. §5No one can see you.");
                         $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
+                        $sender->getPlayer()->addTitle("§6§lVanish Mode is §5§lenabled!", 40, 100, 40);
                         $this->getServer()->broadcastMessage(C::GREEN . "§c$name §ehas left the game.");
                     } else {
                         $this->vanish[$name] = false;
@@ -36,11 +33,12 @@ class Vanish extends PluginBase implements Listener {
                         }
                         $sender->sendMessage(self::PREFIX . C::RED . " §dYou are no longer vanished! §bEveryone can now see you!");
                         $sender->removeEffect(Effect::NIGHT_VISION);
+                        $sender->getPlayer()->addTitle("§6§lVanish mode is §c§lDisabled", 40, 100, 40);
                         $this->getServer()->broadcastMessage(C::RED . "§a$name §ehas joined the game");
                     }
                 }
             } else {
-                $sender->sendMessage(self::PREFIX . C::YELLOW . "You need to be a Player.");
+                $sender->sendMessage(self::PREFIX . C::YELLOW . "Please use this command in-game.");
             }
         }
         return false;
