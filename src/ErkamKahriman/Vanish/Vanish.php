@@ -1,6 +1,6 @@
 <?php
 namespace ErkamKahriman\Vanish;
-use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent};
+use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent, PlayerJoinEvent};
 use pocketmine\plugin\PluginBase;
 use pocketmine\entity\{Effect, EffectInstance};
 use pocketmine\{Player, Server};
