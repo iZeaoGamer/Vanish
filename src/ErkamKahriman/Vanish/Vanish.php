@@ -4,6 +4,8 @@ use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
+use pocketmine\entity\Effect;
+use pocketmine\entity\EffectInstance;
 use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as C;
@@ -25,6 +27,7 @@ class Vanish extends PluginBase implements Listener {
                     if ($this->vanish[$name] == false) {
                         $this->vanish[$name] = true;
                         $sender->sendMessage(self::PREFIX . C::GREEN . " §dYou are now vanished. §5No one can see you.");
+                        $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
                         $this->getServer()->broadcastMessage(C::GREEN . "§c$name §ehas left the game.");
                     } else {
                         $this->vanish[$name] = false;
@@ -32,6 +35,7 @@ class Vanish extends PluginBase implements Listener {
                             $players->showPlayer($sender);
                         }
                         $sender->sendMessage(self::PREFIX . C::RED . " §dYou are no longer vanished! §bEveryone can now see you!");
+                        $sender->removeEffect(Effect::NIGHT_VISION);
                         $this->getServer()->broadcastMessage(C::RED . "§a$name §ehas joined the game");
                     }
                 }
