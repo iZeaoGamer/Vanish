@@ -1,6 +1,6 @@
 <?php
 namespace ErkamKahriman\Vanish;
-use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent, PlayerJoinEvent};
+use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent};
 use pocketmine\plugin\PluginBase;
 use pocketmine\entity\{Effect, EffectInstance};
 use pocketmine\{Player, Server};
@@ -52,17 +52,6 @@ class Vanish extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $name = $player->getName();
         if ($this->vanish[$name] == true) $this->vanish[$name] = true;
-    }
-    public function onJoin(PlayerJoinEvent $event) {
-        $player = $event->getPlayer();
-        $name = $player->getName();
-        if ($this->vanish[$name] == true) $this->vanish[$name] = true;
-        $player->sendMessage("§dYou're still in vanish mode! Just a little reminder. :P");
-    }
-    public function onJoin2(PlayerJoinEvent $event) {
-        $player = $event->getPlayer();
-        $name = $player->getName();
-        if ($this->vanish[$name] == false) $this->vanish[$name] == false;
     }
     public function onDisable() {
         $this->getLogger()->info(C::RED . "Plugin disabled.");
