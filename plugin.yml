@@ -6,7 +6,6 @@ api: 3.0.0-ALPHA11
 commands:
   supervanish:
     description: "Vanish yourself"
-    aliases: [sv]
 permissions:
   supervanish.spectate:
     description: "Vanish use permission"
