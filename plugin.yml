@@ -5,8 +5,9 @@ author: ErkamKahriman, edited by VMPE Development Team
 api: 3.0.0-ALPHA11
 commands:
   supervanish:
-    description: "Vanish yourself"
+    description: "Toggle on/off vanish."
+    aliases: ["sv"]
 permissions:
   supervanish.spectate:
-    description: "Vanish use permission"
+    description: "Permission to vanish yourself."
     default: op
