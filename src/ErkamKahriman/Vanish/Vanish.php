@@ -24,8 +24,8 @@ class Vanish extends PluginBase implements Listener {
                         $this->vanish[$name] = true;
                         $sender->sendMessage(self::PREFIX . C::GREEN . " §dYou are now vanished. §5No one can see you.");
                         $sender->setDisplayName("");
-				        $sender->setNameTag("");
-				        $sender->despawnFromAll();
+			$sender->setNameTag("");
+			$sender->despawnFromAll();
                         $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
                         $sender->getPlayer()->addTitle("§6§lVanish Mode", "§5§lis enabled!", 40, 100, 40);
                         $this->getServer()->broadcastMessage(C::GREEN . "§c$name §ehas left the game.");
@@ -36,8 +36,8 @@ class Vanish extends PluginBase implements Listener {
                         }
                         $sender->sendMessage(self::PREFIX . C::RED . " §dYou are no longer vanished! §bEveryone can now see you!");
                         $sender->spawnToAll();
-				        $sender->setNameTag("§a".$sender->getName());
-				        $sender->setDisplayName($sender->getName());
+			$sender->setNameTag("§a".$sender->getName());
+			$sender->setDisplayName($sender->getName());
                         $sender->removeEffect(Effect::NIGHT_VISION);
                         $sender->getPlayer()->addTitle("§6§lVanish mode", "§c§lis Disabled", 40, 100, 40);
                         $this->getServer()->broadcastMessage(C::RED . "§a$name §ehas joined the game");
