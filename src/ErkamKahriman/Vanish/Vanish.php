@@ -36,7 +36,7 @@ class Vanish extends PluginBase implements Listener {
                         }
                         $sender->sendMessage(self::PREFIX . C::RED . " §dYou are no longer vanished! §bEveryone can now see you!");
                         $sender->spawnToAll();
-			$sender->setNameTag("§a".$sender->getName());
+			$sender->setNameTag("§b[§5§lSTAFF§r§b] §d".$sender->getName());
 			$sender->setDisplayName($sender->getName());
                         $sender->removeEffect(Effect::NIGHT_VISION);
                         $sender->getPlayer()->addTitle("§6§lVanish mode", "§c§lis Disabled", 40, 100, 40);
