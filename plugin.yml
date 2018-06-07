@@ -1,6 +1,6 @@
 name: SuperVanishV2
 main: ErkamKahriman\Vanish\Vanish
-version: 2.0.0
+version: 2.1.0
 author: ErkamKahriman, edited by VMPE Development Team
 api: [3.0.0-ALPHA11, 3.0.0-ALPHA12]
 commands:
@@ -10,4 +10,7 @@ commands:
 permissions:
   supervanish.spectate:
     description: "Permission to vanish yourself."
+    default: op
+  supervanish.see:
+    description: "Permission to see other players in Supervanish."
     default: op
