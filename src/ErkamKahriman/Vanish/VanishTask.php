@@ -20,7 +20,7 @@ class VanishTask extends PluginTask {
                     $players->hidePlayer($player);
                     }
                 } elseif($players->hasPermission("supervanish.see")){
-                    if($this->plugin->vanish[$player->getName()] == true){
+                    if($this->plugin->vanish[$player->getName()] == false){
                     $players->showPlayer($player);
                     }
                 }
