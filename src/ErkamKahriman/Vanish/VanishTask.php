@@ -21,9 +21,11 @@ class VanishTask extends PluginTask {
                     }
                 } elseif($players->hasPermission("supervanish.see")){
                     if($this->plugin->vanish[$player->getName()] == false){
-                    $players->showPlayer($player);
+                       foreach ($this->plugin->getServer()->getOnlinePlayers() as $players){
+                           $players->showPlayer($player);
                     }
                 }
             }
         }
     }
+}
