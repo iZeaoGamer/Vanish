@@ -52,7 +52,7 @@ class Vanish extends PluginBase implements Listener {
     } else {
 	    $sender->sendMessage(self::PREFIX . C::RED . "§cThis command is for staff only!");
     }
-        return false;
+        return true;
     }
     public function onLogin(PlayerLoginEvent $event) {
         $player = $event->getPlayer();
