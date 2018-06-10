@@ -2,7 +2,7 @@
 
 namespace ErkamKahriman\Vanish;
 
-use pocketmine\event\player\PlayerLoginEvent;
+use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent};
 use pocketmine\plugin\PluginBase;
 use pocketmine\entity\{Effect, EffectInstance};
 use pocketmine\{Player, Server};
@@ -53,6 +53,16 @@ class Vanish extends PluginBase implements Listener {
 	    $sender->sendMessage(self::PREFIX . C::RED . "§cThis command is for staff only!");
     }
         return false;
+    }
+    public function onLogin(PlayerLoginEvent $event) {
+        $player = $event->getPlayer();
+        $name = $player->getName();
+        if (!isset($this->vanish[$name])) $this->vanish[$name] = false;
+    }
+    public function onQuit(PlayerQuitEvent $event) {
+        $player = $event->getPlayer();
+        $name = $player->getName();
+        if ($this->vanish[$name] == true) $this->vanish[$name] = false;
     }
     public function onDisable() {
         $this->getLogger()->info(C::RED . "Plugin disabled.");
