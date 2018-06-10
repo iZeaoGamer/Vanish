@@ -1,12 +1,15 @@
 <?php
+
 namespace ErkamKahriman\Vanish;
-use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent};
+
+use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\entity\{Effect, EffectInstance};
 use pocketmine\{Player, Server};
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\command\{Command, CommandSender};
+
 class Vanish extends PluginBase implements Listener {
     const PREFIX = C::BLUE . "§7[" . C::GRAY . "§aSuper§6Vanish§7]" . C::RESET;
     public $vanish = array();
@@ -52,12 +55,11 @@ class Vanish extends PluginBase implements Listener {
     public function onLogin(PlayerLoginEvent $event) {
         $player = $event->getPlayer();
         $name = $player->getName();
-        if (!isset($this->vanish[$name])) $this->vanish[$name] = false;
+         if ($this->vanish[$name] == true) {
+		$name->sendMessage(self::PREFIX . C::GREEN . " §dYou are still in vanish. §5No one can see you.");
+                        $name->setDisplayName("");
+		 	$player->setJoinMessage("");
     }
-    public function onQuit(PlayerQuitEvent $event) {
-        $player = $event->getPlayer();
-        $name = $player->getName();
-        if ($this->vanish[$name] == true) $this->vanish[$name] = true;
     }
     public function onDisable() {
         $this->getLogger()->info(C::RED . "Plugin disabled.");
