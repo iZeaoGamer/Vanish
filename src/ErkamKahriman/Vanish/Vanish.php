@@ -48,8 +48,10 @@ class Vanish extends PluginBase implements Listener {
                 }
             } else {
                 $sender->sendMessage(self::PREFIX . C::YELLOW . " Please use this command in-game.");
-            }
         }
+    } else {
+	    $sender->sendMessage(self::PREFIX . C::RED . "§cThis command is for staff only!");
+    }
         return false;
     }
     public function onDisable() {
