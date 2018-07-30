@@ -2,9 +2,9 @@
 
 namespace ErkamKahriman\Vanish;
 
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class VanishTask extends PluginTask {
+class VanishTask extends Task {
 
     private $plugin;
 
@@ -14,16 +14,17 @@ class VanishTask extends PluginTask {
     }
 
     public function onRun(int $currentTick) {
-        foreach ($this->plugin->getServer()->getOnlinePlayers() as $player){
-            if ($this->plugin->vanish[$player->getName()] == true){
-                foreach ($this->plugin->getServer()->getOnlinePlayers() as $players){
+        foreach (Server::getInstance()->getOnlinePlayers() as $player){
+            if($player->spawned(){
+            if (Vanish::getInstance()->vanish[$player->getName()] == true){
+                foreach (Server::getInstance()->getOnlinePlayers() as $players){
                     $players->hidePlayer($player);
                     }
                 } else {
-         foreach ($this->plugin->getServer()->getOnlinePlayers() as $player){
+         foreach (Server::getInstance()->getOnlinePlayers() as $player){
              if($player->hasPermission("supervanish.see")){
-                    if($this->plugin->vanish[$player->getName()] == false){
-                       foreach ($this->plugin->getServer()->getOnlinePlayers() as $players){
+                    if(Vanish::getInstance()->vanish[$player->getName()] == false){
+                       foreach (Server::getInstance()->getOnlinePlayers() as $players){
                            $players->showPlayer($player);
                     }
                 }
