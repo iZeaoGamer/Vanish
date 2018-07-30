@@ -1,8 +1,8 @@
 name: SuperVanishV2
 main: ErkamKahriman\Vanish\Vanish
-version: 2.1.0
+version: 3.0.0
 author: ErkamKahriman, edited by VMPE Development Team
-api: [3.0.0-ALPHA11, 3.0.0-ALPHA12]
+api: [3.0.0, 4.0.0]
 commands:
   supervanish:
     description: "Toggle on/off vanish."
