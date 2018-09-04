@@ -1,7 +1,5 @@
 <?php
-
 namespace ErkamKahriman\Vanish;
-
 use pocketmine\event\player\{PlayerLoginEvent, PlayerQuitEvent};
 use pocketmine\plugin\PluginBase;
 use pocketmine\entity\{Effect, EffectInstance};
@@ -9,7 +7,6 @@ use pocketmine\{Player, Server};
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as C;
 use pocketmine\command\{Command, CommandSender};
-
 class Vanish extends PluginBase implements Listener {
     const PREFIX = C::BLUE . "§7[" . C::GRAY . "§aSuper§6Vanish§7]" . C::RESET;
     public $vanish = array();
@@ -29,12 +26,13 @@ class Vanish extends PluginBase implements Listener {
                 if ($sender->hasPermission("supervanish.spectate")) {
                     if ($this->vanish[$name] == false) {
                         $this->vanish[$name] = true;
-                        $sender->sendMessage(self::PREFIX . C::GREEN . " §dYou are now vanished. §5No one can see you.");
+                        $sender->sendMessage(self::PREFIX . C::GREEN . " §dYou are now vanished. §5No one can see you.\n§aKeep in mind - §bOnly use this command to catch hackers, or abusers, nothing else. \n§cAs this could cause a demotion if you do not obey the rules.");
                         $sender->setDisplayName("");
 			$sender->setNameTag("");
 			$sender->despawnFromAll();
                         $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
                         $sender->getPlayer()->addTitle("§6§lVanish Mode", "§5§lis enabled!", 40, 100, 40);
+                        $this->getServer()->broadcastMessage(C::GREEN . "§3$name §bhas left the game");
                     } else {
                         $this->vanish[$name] = false;
                         foreach ($this->getServer()->getOnlinePlayers() as $players){
@@ -46,6 +44,7 @@ class Vanish extends PluginBase implements Listener {
 			$sender->setDisplayName($sender->getName());
                         $sender->removeEffect(Effect::NIGHT_VISION);
                         $sender->getPlayer()->addTitle("§6§lVanish mode", "§c§lis Disabled", 40, 100, 40);
+                        $this->getServer()->broadcastMessage(C::RED . "§5$name §djoined the game.");
                     }
                 }
             } else {
