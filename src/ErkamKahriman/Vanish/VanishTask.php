@@ -3,6 +3,8 @@
 namespace ErkamKahriman\Vanish;
 
 use pocketmine\scheduler\Task;
+use pocketmine\Server;
+use ErkamKahriman\Vanish\Vanish;
 
 class VanishTask extends Task {
 
