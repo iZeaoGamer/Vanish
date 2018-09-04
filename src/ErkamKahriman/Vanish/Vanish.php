@@ -35,7 +35,6 @@ class Vanish extends PluginBase implements Listener {
 			$sender->despawnFromAll();
                         $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
                         $sender->getPlayer()->addTitle("§6§lVanish Mode", "§5§lis enabled!", 40, 100, 40);
-                        $this->getServer()->broadcastMessage(C::GREEN . "§2$name §ahas left the game");
                     } else {
                         $this->vanish[$name] = false;
                         foreach ($this->getServer()->getOnlinePlayers() as $players){
@@ -47,7 +46,6 @@ class Vanish extends PluginBase implements Listener {
 			$sender->setDisplayName($sender->getName());
                         $sender->removeEffect(Effect::NIGHT_VISION);
                         $sender->getPlayer()->addTitle("§6§lVanish mode", "§c§lis Disabled", 40, 100, 40);
-                        $this->getServer()->broadcastMessage(C::RED . "§3$name §bjoined the game.");
                     }
                 }
             } else {
