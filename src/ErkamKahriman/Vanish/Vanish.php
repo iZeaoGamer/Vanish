@@ -12,6 +12,7 @@ class Vanish extends PluginBase implements Listener {
     public $vanish = array();
     public function onEnable() {
 	self::$instance = $this;
+	    $this->saveResource("config.yml");
         $this->getScheduler()->scheduleRepeatingTask(new VanishTask(), 20);
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getLogger()->info(C::GREEN . "Plugin enabled.");
@@ -32,11 +33,14 @@ class Vanish extends PluginBase implements Listener {
 			$sender->despawnFromAll();
                         $sender->addEffect(new EffectInstance(Effect::getEffect(Effect::NIGHT_VISION), (99999999*20), (1), (false)));
                         $sender->getPlayer()->addTitle("§6§lVanish Mode", "§5§lis enabled!", 40, 100, 40);
-                        $this->getServer()->broadcastMessage(C::GREEN . "§3$name §bhas left the game");
+			    $message = str_replace(['{player}'], [$sender->getName()], $this->getConfig()->get("fake-leave"));
+                        $this->getServer()->broadcastMessage($message);
+			$this->getServer()->removeOnlinePlayer($sender);
                     } else {
                         $this->vanish[$name] = false;
                         foreach ($this->getServer()->getOnlinePlayers() as $players){
                             $players->showPlayer($sender);
+				$this->getServer()->addOnlinePlayer($sender);
                         }
                         $sender->sendMessage(self::PREFIX . C::RED . " §dYou are no longer vanished! §bEveryone can now see you!");
                         $sender->spawnToAll();
@@ -44,7 +48,8 @@ class Vanish extends PluginBase implements Listener {
 			$sender->setDisplayName($sender->getName());
                         $sender->removeEffect(Effect::NIGHT_VISION);
                         $sender->getPlayer()->addTitle("§6§lVanish mode", "§c§lis Disabled", 40, 100, 40);
-                        $this->getServer()->broadcastMessage(C::RED . "§5$name §djoined the game.");
+			    $message = str_replace(['{player}'], [$sender->getName()], $this->getConfig()->get("fake-join"));
+                        $this->getServer()->broadcastMessage($message);
                     }
                 }
             } else {
